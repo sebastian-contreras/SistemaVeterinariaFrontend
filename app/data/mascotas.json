@@ -1,0 +1,154 @@
+[
+  {
+    "idMascotas": 1,
+    "nombre": "Rufus",
+    "fechaDeNacimiento": "2018-04-12",
+    "tipo": "Gato",
+    "urlFoto": "https://www.example.com/rufus.jpg",
+    "sexo": "HEMBRA"
+  },
+  {
+    "idMascotas": 2,
+    "nombre": "Luna",
+    "fechaDeNacimiento": "2019-09-21",
+    "tipo": "Pajaro",
+    "urlFoto": "https://www.example.com/luna.jpg",
+    "sexo": "MACHO"
+  },
+  {
+    "idMascotas": 3,
+    "nombre": "Piolin",
+    "fechaDeNacimiento": "2020-02-14",
+    "tipo": "Pez",
+    "urlFoto": "https://www.example.com/piolin.jpg",
+    "sexo": "HEMBRA"
+  },
+  {
+    "idMascotas": 4,
+    "nombre": "Nemo",
+    "fechaDeNacimiento": "2017-11-03",
+    "tipo": "Gato",
+    "urlFoto": "https://www.example.com/nemo.jpg",
+    "sexo": "HEMBRA"
+  },
+  {
+    "idMascotas": 5,
+    "nombre": "Bola",
+    "fechaDeNacimiento": "2022-01-05",
+    "tipo": "Gato",
+    "urlFoto": "https://www.example.com/bola.jpg",
+    "sexo": "MACHO"
+  },
+  {
+    "idMascotas": 6,
+    "nombre": "Max",
+    "fechaDeNacimiento": "2020-03-20",
+    "tipo": "Caballo",
+    "urlFoto": "https://www.example.com/max.jpg",
+    "sexo": "HEMBRA"
+  },
+  {
+    "idMascotas": 7,
+    "nombre": "Tom",
+    "fechaDeNacimiento": "2021-05-01",
+    "tipo": "Pajaro",
+    "urlFoto": "https://www.example.com/tom.jpg",
+    "sexo": "HEMBRA"
+  },
+  {
+    "idMascotas": 8,
+    "nombre": "Puffy",
+    "fechaDeNacimiento": "2019-12-08",
+    "tipo": "Gato",
+    "urlFoto": "https://www.example.com/puffy.jpg",
+    "sexo": "MACHO"
+  },
+  {
+    "idMascotas": 9,
+    "nombre": "Buddy",
+    "fechaDeNacimiento": "2020-06-15",
+    "tipo": "Caballo",
+    "urlFoto": "https://www.example.com/buddy.jpg",
+    "sexo": "HEMBRA"
+  },
+  {
+    "idMascotas": 10,
+    "nombre": "Tweety",
+    "fechaDeNacimiento": "2018-07-22",
+    "tipo": "Pez",
+    "urlFoto": "https://www.example.com/tweety.jpg",
+    "sexo": "MACHO"
+  },
+  {
+    "idMascotas": 11,
+    "nombre": "Jerry",
+    "fechaDeNacimiento": "2021-02-11",
+    "tipo": "Pajaro",
+    "urlFoto": "https://www.example.com/jerry.jpg",
+    "sexo": "HEMBRA"
+  },
+  {
+    "idMascotas": 12,
+    "nombre": "Daisy",
+    "fechaDeNacimiento": "2019-04-30",
+    "tipo": "Gato",
+    "urlFoto": "https://www.example.com/daisy.jpg",
+    "sexo": "MACHO"
+  },
+  {
+    "idMascotas": 13,
+    "nombre": "Goldie",
+    "fechaDeNacimiento": "2017-08-17",
+    "tipo": "Gato",
+    "urlFoto": "https://www.example.com/goldie.jpg",
+    "sexo": "MACHO"
+  },
+  {
+    "idMascotas": 14,
+    "nombre": "Toto",
+    "fechaDeNacimiento": "2019-10-10",
+    "tipo": "Caballo",
+    "urlFoto": "https://www.example.com/toto.jpg",
+    "sexo": "HEMBRA"
+  },
+  {
+    "idMascotas": 15,
+    "nombre": "Tweety",
+    "fechaDeNacimiento": "2018-07-22",
+    "tipo": "Pez",
+    "urlFoto": "https://www.example.com/tweety.jpg",
+    "sexo": "MACHO"
+  },
+  {
+    "idMascotas": 16,
+    "nombre": "Jerry",
+    "fechaDeNacimiento": "2021-02-11",
+    "tipo": "Gato",
+    "urlFoto": "https://www.example.com/jerry.jpg",
+    "sexo": "HEMBRA"
+  },
+  {
+    "idMascotas": 17,
+    "nombre": "Daisy",
+    "fechaDeNacimiento": "2019-04-30",
+    "tipo": "Gato",
+    "urlFoto": "https://www.example.com/daisy.jpg",
+    "sexo": "MACHO"
+  },
+  {
+    "idMascotas": 18,
+    "nombre": "Goldie",
+    "fechaDeNacimiento": "2017-08-17",
+    "tipo": "Gato",
+    "urlFoto": "https://www.example.com/goldie.jpg",
+    "sexo": "MACHO"
+  },
+  {
+    "idMascotas": 19,
+    "nombre": "Toto",
+    "fechaDeNacimiento": "2019-10-10",
+    "tipo": "Caballo",
+    "urlFoto": "https://www.example.com/toto.jpg",
+    "sexo": "HEMBRA"
+  }
+]

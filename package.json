@@ -9,12 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@expo-google-fonts/nunito": "^0.2.3",
+    "@popperjs/core": "^2.11.8",
     "@types/node": "20.5.7",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
+    "bootstrap": "^5.3.2",
+    "jquery": "^3.7.1",
     "next": "13.4.19",
+    "radix-ui": "^1.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "5.2.2"
+  },
+  "devDependencies": {
+    "@types/bootstrap": "^5.2.7",
+    "@types/jquery": "^3.5.19"
   }
 }
