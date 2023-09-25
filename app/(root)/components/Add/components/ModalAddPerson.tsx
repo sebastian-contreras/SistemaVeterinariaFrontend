@@ -39,10 +39,6 @@ export default function ModalAddPerson({ show, setShow, tipo }: ModalProps) {
     }
 
   }
-  async function onSubmit(){
-    setShow(false);
-    router.refresh();
-  }
 
   return (
     <Modal show={show} onHide={() => setShow(false)}>
