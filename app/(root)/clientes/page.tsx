@@ -1,13 +1,13 @@
 import Modaljs from "@/app/components/Modaljs";
 import { Persona } from "@/app/interfaces/interfaces";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import FormMascota from "../components/FormMascota";
 import FormPersona from "../components/FormPersona";
 import { fetchAllClientes } from "@/app/services/fetchData";
+import TablaClientes from "./components/TablaClientes";
+import AddPerson from "../components/Add/AddPerson";
 const getClientes = async (): Promise<Persona[]> => {
-  const data = await fetch("http://localhost:8080/api/clientes");
-  const clientes = data.json();
   return fetchAllClientes();
 };
 
@@ -33,9 +33,7 @@ async function Clientes() {
             </div>
           </div>
           <div className="col-md-6 ms-auto">
-            <button data-target="#newCliente" data-toggle="modal" type="button" className="btn btn-primary ">
-              Nuevo cliente
-            </button>
+            <AddPerson tipo={true}/>
           </div>
         </div>
 
@@ -43,61 +41,12 @@ async function Clientes() {
         <div id="card-body">
           <div className=" shadow mb-4">
             <div className="table-responsive">
-              <table
-                className="table table-bordered"
-                id="dataTable"
-                width="100%"
-              >
-                <thead>
-                  <tr>
-                    <th>Dni</th>
-                    <th>Nombre, apellido</th>
-                    <th>Telefono</th>
-                    <th>email</th>
-                    <th>direccion</th>
-                    <th>Options</th>
-                  </tr>
-                </thead>
-                <tfoot>
-                  <tr>
-                    <th>Dni</th>
-                    <th>Nombre, apellido</th>
-                    <th>Telefono</th>
-                    <th>email</th>
-                    <th>direccion</th>
-                    <th>Options</th>
-                  </tr>
-                </tfoot>
-                <tbody>
-                  {clientes.map((cliente) => (
-                    <tr key={cliente.dni.toString()}>
-                      <td>{cliente.dni}</td>
-                      <td>
-                        {cliente.nombre}, {cliente.apellido}
-                      </td>
-                      <td>{cliente.telefono}</td>
-                      <td>{cliente.email}</td>
-                      <td>{cliente.direccion}</td>
-                      <td>
-                        <Link
-                          className="link-danger"
-                          href={`/perfil/${cliente.dni}`}
-                        >
-                          <i className="fas fa-solid fa-id-badge pr-2"></i>
-                        </Link>
-                        <i className="fas fa-solid fa-trash pr-2"></i>
-                        <i className="fas fa-solid fa-plus"></i>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              <TablaClientes clientes={clientes}/>
             </div>
           </div>
         </div>
       </div>
 
-      <Modaljs titulo="Nuevo Cliente" objetivo="newCliente"><FormPersona tipo/></Modaljs>              
 
     </>
   );

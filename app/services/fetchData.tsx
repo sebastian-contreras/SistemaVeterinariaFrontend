@@ -1,7 +1,10 @@
 import { CitasPendientes, Historia, Mascotas, Persona, Veterinario } from "../interfaces/interfaces";
+
+const apiUrl = process.env.API_URL
+
 // PERFIL DE MASCOTA
 export const fetchMascota = async (id: Number): Promise<Mascotas> => {
-    const data = await fetch(`http://localhost:8080/api/mascotas/perfil/${id}`, {
+    const data = await fetch(`${apiUrl}/api/mascotas/perfil/${id}`, {
       cache: "no-cache",
     });
     const mascota = data.json();
@@ -9,34 +12,36 @@ export const fetchMascota = async (id: Number): Promise<Mascotas> => {
   };
 //   CITAS DE UNA MASCOTAS
   export const fetchCitasMascota = async (id: Number): Promise<CitasPendientes[]> => {
-    const data = await fetch(`http://localhost:8080/api/citasmascota/${id}`);
+    const data = await fetch(`${apiUrl}/api/citasmascota/${id}`);
     const citas = data.json();
     return citas;
   };
 //   HISTORIAS DE UNA MASCOTA
   export const fetchHistoriaMascota = async (id: Number): Promise<Historia[]> => {
-    const data = await fetch(`http://localhost:8080/api/historia/${id}`);
+    const data = await fetch(`${apiUrl}/api/historia/${id}`);
     const historia = data.json();
     return historia;
   };
 
 //   TODAS LAS CITAS
   export const fetchCitasPendientes = async():Promise<CitasPendientes[]> => {
-    const data = await fetch("http://localhost:8080/api/citaspendiente",{cache:"no-cache"});
+    const data = await fetch(`${apiUrl}/api/citaspendiente`,{cache:"no-cache"});
     const citas= data.json();
     return citas;
   };
 
 // TODOS LOS CLIENTES
   export const fetchAllClientes = async (): Promise<Persona[]> => {
-    const data = await fetch("http://localhost:8080/api/clientes");
+    const data = await fetch(`${apiUrl}/api/clientes`, {
+      cache: "no-cache",
+    });
     const clientes = data.json();
     return clientes;
   };
 
 //   TODAS LAS MASCOTAS
   export const fetchMascotas = async (): Promise<Mascotas[]> => {
-    const data = await fetch("http://localhost:8080/api/mascotas", {
+    const data = await fetch(`${apiUrl}/api/mascotas`, {
       cache: "no-cache",
     });
   
@@ -46,14 +51,16 @@ export const fetchMascota = async (id: Number): Promise<Mascotas> => {
 
 // PERFIL DE PERSONA
   export const fetchPerfilCliente = async (dni: String): Promise<Persona> => {
-    const data = await fetch(`http://localhost:8080/api/clientes/${dni}`);
+    const data = await fetch(`${apiUrl}/api/clientes/${dni}`, {
+      cache: "no-cache",
+    });
     const clientes = data.json();
     return clientes;
   };
 
 //MASCOTAS DE UNA PERSONA
   export const fetchMascotasPersona = async (dni: String): Promise<Mascotas[]> => {
-    const data = await fetch(`http://localhost:8080/api/mascotas/${dni}`, {
+    const data = await fetch(`${apiUrl}/api/mascotas/${dni}`, {
       cache: "no-cache",
     });
     const mascotas = data.json();
@@ -61,7 +68,9 @@ export const fetchMascota = async (id: Number): Promise<Mascotas> => {
   };
   //CITAS DE UNA PERSONA
   export const fetchCitasPersona = async (dni: String): Promise<CitasPendientes[]> => {
-    const data = await fetch(`http://localhost:8080/api/citaspendiente/${dni}`);
+    const data = await fetch(`${apiUrl}/api/citaspendiente/${dni}`, {
+      cache: "no-cache",
+    });
     const citas = data.json();
     return citas;
   };
@@ -69,7 +78,9 @@ export const fetchMascota = async (id: Number): Promise<Mascotas> => {
 
   //
   export const fetchVeterinarios = async():Promise<Veterinario[]> => {
-    const data = await fetch("http://localhost:8080/api/veterinarios");
+    const data = await fetch(`${apiUrl}/api/veterinarios`, {
+      cache: "no-cache",
+    });
     const veterinarios = data.json();
     console.log(data)
     return veterinarios;
