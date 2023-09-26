@@ -1,6 +1,6 @@
 import "../globals.css";
 import "../../public/static/vendor/fontawesome-free/css/all.css";
-
+import 'react-spinner-animated/dist/index.css'
 import type { Metadata } from "next";
 import { Inter, Nunito } from "next/font/google";
 import Sidebar from "../components/Sidebar";

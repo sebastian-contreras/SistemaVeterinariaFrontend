@@ -1,6 +1,6 @@
 import { CitasPendientes, Historia, Mascotas, Persona, Veterinario } from "../interfaces/interfaces";
 
-const apiUrl = process.env.API_URL
+const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
 // PERFIL DE MASCOTA
 export const fetchMascota = async (id: Number): Promise<Mascotas> => {

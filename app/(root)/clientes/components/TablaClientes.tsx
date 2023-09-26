@@ -1,6 +1,17 @@
+"use client"
 import { Persona } from '@/app/interfaces/interfaces'
+import { deletePersona } from '@/app/services/deleteData'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { Router } from 'next/router'
 import React from 'react'
+
+const deletePersonaTabla = async (id:String) =>{
+  const router = useRouter();
+  await deletePersona(id);
+  router.refresh()
+  
+}
 
 function TablaClientes({clientes}:{clientes:Persona[]}) {
   return (
@@ -46,8 +57,8 @@ function TablaClientes({clientes}:{clientes:Persona[]}) {
                         >
                           <i className="fas fa-solid fa-id-badge pr-2"></i>
                         </Link>
-                        <i className="fas fa-solid fa-trash pr-2"></i>
-                        <i className="fas fa-solid fa-plus"></i>
+
+                        <i className="fas fa-solid fa-trash pr-2" onClick={()=>deletePersonaTabla(cliente.dni)}></i>
                       </td>
                     </tr>
                   ))}

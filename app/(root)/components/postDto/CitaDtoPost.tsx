@@ -1,9 +1,9 @@
 export interface CitaDtoPost {
-    idCita: Number;
+    idCita?: Number;
     fecha: Date;
     consultorio: String;
     monto: Number;
-    estado?: Boolean;
+    estado: Boolean;
     titulo?: String;
     imagenes?: String;
     descripcion?: String;

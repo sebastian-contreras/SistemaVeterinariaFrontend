@@ -5,10 +5,6 @@ import {
 } from "@/app/interfaces/interfaces";
 import Link from "next/link";
 import React from "react";
-import NuevaMascota from "../../components/NuevaMascota";
-import Modaljs from "@/app/components/Modaljs";
-import FormMascota from "../../components/FormMascota";
-import FormHistoria from "../../components/FormHistoria";
 import { fetchCitasPersona, fetchMascotasPersona, fetchPerfilCliente } from "@/app/services/fetchData";
 import ShortTableMascotas from "./components/ShortTableMascotas";
 import ShortTableCitasPendientes from "./components/ShortTableCitasPendientes";

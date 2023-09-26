@@ -1,8 +1,6 @@
-import Modaljs from "@/app/components/Modaljs";
 import { Veterinario } from "@/app/interfaces/interfaces";
 import Link from "next/link";
 import React from "react";
-import FormPersona from "../components/FormPersona";
 import { fetchVeterinarios } from "@/app/services/fetchData";
 import TablaVeterinarios from "./components/TablaVeterinarios";
 import AddPerson from "../components/Add/AddPerson";

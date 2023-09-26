@@ -1,5 +1,3 @@
-import FormHistoria from '@/app/(root)/components/FormHistoria'
-import Modaljs from '@/app/components/Modaljs'
 import { CitasPendientes } from '@/app/interfaces/interfaces'
 import React from 'react'
 
@@ -38,12 +36,7 @@ function ShortTableCitasPendientes({citas}:{citas:CitasPendientes[]}) {
                   </a>
                   <i className="fas fa-solid fa-trash pr-2"></i>
                 </td>
-                <Modaljs
-                  titulo={`Historia ${cita.idCita}`}
-                  objetivo={`modalhistoria${cita.idCita}`}
-                >
-                  <FormHistoria relleno={cita} />
-                </Modaljs>
+             
               </tr>
             ))}
           </tbody>

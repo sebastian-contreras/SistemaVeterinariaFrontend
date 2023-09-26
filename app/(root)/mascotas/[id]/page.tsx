@@ -1,13 +1,13 @@
-import Modaljs from "@/app/components/Modaljs";
 import {
   CitasPendientes,
   Historia,
   Mascotas,
+  Veterinario,
 } from "@/app/interfaces/interfaces";
 import React from "react";
-import FormTurno from "../../components/FormTurno";
-import FormHistoria from "../../components/FormHistoria";
-import { fetchCitasMascota, fetchHistoriaMascota, fetchMascota } from "@/app/services/fetchData";
+import { fetchCitasMascota, fetchHistoriaMascota, fetchMascota, fetchVeterinarios } from "@/app/services/fetchData";
+import AddCita from "../../components/Add/AddCita";
+import ChangeHistoria from "../../components/Add/ChangeHistoria";
 
 const getMascota = async (id: Number): Promise<Mascotas> => {
 
@@ -23,11 +23,14 @@ const getHistoria = async (id: Number): Promise<Historia[]> => {
 
   return fetchHistoriaMascota(id);
 };
-
+const getVeterinarios = async():Promise<Veterinario[]> => {
+  return fetchVeterinarios();
+};
 async function perfilMascota({ params }: { params: { id: Number } }) {
   const mascota = await getMascota(params.id);
   const citas = await getCitas(params.id);
   const historias = await getHistoria(params.id);
+  const veterinarios = await getVeterinarios();
   return (
     <>
       <div className="card shadow mb-4">
@@ -171,14 +174,9 @@ async function perfilMascota({ params }: { params: { id: Number } }) {
               </h5>
             </div>
             <div className="col-3">
-              <button
-                data-target="#newMascota"
-                data-toggle="modal"
-                type="button"
-                className="btn btn-primary btn-sm"
-              >
-                Nueva Turno
-              </button>
+
+                <AddCita mascota={mascota} datos={veterinarios}></AddCita>
+
             </div>
           </div>
         </div>
@@ -201,21 +199,9 @@ async function perfilMascota({ params }: { params: { id: Number } }) {
                   {cita.veterinario.nombre} {cita.veterinario.apellido}
                 </td>
                 <td>
-                  <a
-                    data-target={`#modalhistoria${cita.idCita}`}
-                    data-toggle="modal"
-                    type="button"
-                  >
-                    <i className="fas fa-solid fa-check pr-2"></i>
-                  </a>
+                  <ChangeHistoria cita={cita}/>
                   <i className="fas fa-solid fa-trash pr-2"></i>
                 </td>
-                <Modaljs
-                  titulo={`Historia ${cita.idCita}`}
-                  objetivo={`modalhistoria${cita.idCita}`}
-                >
-                  <FormHistoria relleno={cita} />
-                </Modaljs>
               </tr>
             ))}
           </tbody>
@@ -243,12 +229,6 @@ async function perfilMascota({ params }: { params: { id: Number } }) {
         ))}
       </div>
 
-      <Modaljs
-        titulo={`Nueva turno para ${mascota.nombre}`}
-        objetivo="newMascota"
-      >
-        <FormTurno />
-      </Modaljs>
     </>
   );
 }

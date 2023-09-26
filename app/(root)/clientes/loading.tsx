@@ -1,16 +1,4 @@
-import { Persona } from "@/app/interfaces/interfaces";
-import Link from "next/link";
-import React, { useState } from "react";
-import { fetchAllClientes } from "@/app/services/fetchData";
-import TablaClientes from "./components/TablaClientes";
-import AddPerson from "../components/Add/AddPerson";
-const getClientes = async (): Promise<Persona[]> => {
-  return fetchAllClientes();
-};
-
-
-async function Clientes() {
-  const clientes = await getClientes();
+function loading() {
   return (
     <>
       <div className="card shadow mb-4">
@@ -29,24 +17,19 @@ async function Clientes() {
               />
             </div>
           </div>
-          <div className="col-md-6 ms-auto">
-            <AddPerson tipo={true}/>
-          </div>
+          <div className="col-md-6 ms-auto"></div>
         </div>
 
         {/* <!-- DataTales Example --> */}
         <div id="card-body">
           <div className=" shadow mb-4">
             <div className="table-responsive">
-              <TablaClientes clientes={clientes}/>
             </div>
           </div>
         </div>
       </div>
-
-
     </>
   );
 }
 
-export default Clientes;
+export default loading;
