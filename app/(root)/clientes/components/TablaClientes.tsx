@@ -6,14 +6,14 @@ import { useRouter } from 'next/navigation'
 import { Router } from 'next/router'
 import React from 'react'
 
-const deletePersonaTabla = async (id:String) =>{
-  const router = useRouter();
-  await deletePersona(id);
-  router.refresh()
-  
-}
 
 function TablaClientes({clientes}:{clientes:Persona[]}) {
+  const router = useRouter();
+  const deletePersonaTabla = async (id:String) =>{
+    await deletePersona(id);
+    router.refresh()
+    
+  }
   return (
     <table
                 className="table table-bordered"
