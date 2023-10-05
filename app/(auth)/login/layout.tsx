@@ -8,10 +8,10 @@ function LoginLayout({
   }: {
     children: React.ReactNode;
   }) {
-  return (<section>
+  return (<html>
 
       {children}
-  </section>
+  </html>
     )
 }
 

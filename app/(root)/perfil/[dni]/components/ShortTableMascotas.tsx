@@ -1,3 +1,4 @@
+"use client"
 import { Mascotas } from '@/app/interfaces/interfaces'
 import { deleteMascota } from '@/app/services/deleteData';
 import Link from 'next/link'

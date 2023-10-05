@@ -1,8 +1,9 @@
-"use client"
+"use client";
 import Image from "next/image";
 import styles from "./page.module.css";
 import RootLayout from "./layout";
 import { useState } from "react";
+import { signIn } from "next-auth/react";
 
 export default function Home() {
   return (
@@ -20,7 +21,6 @@ export default function Home() {
 
       {/* <!-- Content Row --> */}
       <div className="row">
-
         {/* <!-- Earnings (Monthly) Card Example --> */}
         <div className="col-xl-3 col-md-6 mb-4">
           <div className="card border-left-primary shadow h-100 py-2">
@@ -94,7 +94,19 @@ export default function Home() {
             </div>
           </div>
         </div>
-
+        <button
+          onClick={() => {
+            console.log("apretado");
+            signIn("credentials", {
+              email:"mariagomez",
+              password:"1234567",
+              redirect: false,
+            });
+          }}
+          className="btn btn-danger"
+        >
+          Login
+        </button>
         {/* <!-- Pending Requests Card Example --> */}
         <div className="col-xl-3 col-md-6 mb-4">
           <div className="card border-left-warning shadow h-100 py-2">

@@ -1,46 +1,73 @@
-import React from "react";
+"use client";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import React, { FormEvent, useState } from "react";
 
 function FormLogin() {
+  const [errors, setErrors] = useState<string[]>([]);
+  const [username, setUsername] = useState("test");
+  const [password, setPassword] = useState("123123");
+  const router = useRouter();
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setErrors([]);
+
+    const responseNextAuth = await signIn("credentials", {
+      username,
+      password,
+      redirect: false,
+    });
+    if (responseNextAuth?.error) {
+      setErrors(responseNextAuth.error.split(","));
+      return;
+    }
+    router.push("/");
+  };
+
   return (
-    <form className="user">
-      <div className="form-group">
-        <input
-          type="email"
-          className="form-control form-control-user"
-          id="exampleInputEmail"
-          aria-describedby="emailHelp"
-          placeholder="Enter Email Address..."
-        />
-      </div>
-      <div className="form-group">
-        <input
-          type="password"
-          className="form-control form-control-user"
-          id="exampleInputPassword"
-          placeholder="Password"
-        />
-      </div>
-      <div className="form-group">
-        <div className="custom-control custom-checkbox small">
+    <>
+      <form onSubmit={handleSubmit} className="user">
+        <div className="form-group">
+          {/* {error && <div className="bg-red-500 text-white p-2 mb-2">{error}</div>} */}
           <input
-            type="checkbox"
-            className="custom-control-input"
-            id="customCheck"
+            type="text"
+            name="username"
+            className="form-control form-control-user"
+            id="exampleInputusername"
+            aria-describedby="usernameHelp"
+            placeholder="Enter username Address..."
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
           />
-          <label className="custom-control-label">Remember Me</label>
         </div>
-      </div>
-      <a href="index.html" className="btn btn-primary btn-user btn-block">
-        Login
-      </a>
-      <hr />
-      <a href="index.html" className="btn btn-google btn-user btn-block">
-        <i className="fab fa-google fa-fw"></i> Login with Google
-      </a>
-      <a href="index.html" className="btn btn-facebook btn-user btn-block">
-        <i className="fab fa-facebook-f fa-fw"></i> Login with Facebook
-      </a>
-    </form>
+        <div className="form-group">
+          <input
+            type="password"
+            name="password"
+            className="form-control form-control-user"
+            id="exampleInputPassword"
+            placeholder="Password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+        </div>
+
+        <button type="submit" className="btn btn-primary btn-user btn-block">
+          Login
+        </button>
+        <hr />
+      </form>
+      {errors.length > 0 && (
+        <div className="alert alert-danger mt-2">
+          <ul className="mb-0">
+            {errors.map((error) => (
+              <li key={error}>{error}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </>
   );
 }
 

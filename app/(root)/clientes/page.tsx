@@ -4,8 +4,13 @@ import React, { useState } from "react";
 import { fetchAllClientes } from "@/app/services/fetchData";
 import TablaClientes from "./components/TablaClientes";
 import AddPerson from "../components/Add/AddPerson";
+import { useSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+
+
 const getClientes = async (): Promise<Persona[]> => {
-  return fetchAllClientes();
+    return await fetchAllClientes()
 };
 
 
@@ -15,7 +20,7 @@ async function Clientes() {
     <>
       <div className="card shadow mb-4">
         <div className="card-header py-3">
-          <h5 className="m-0 font-weight-bold text-primary">Clientes</h5>
+          <h5 className="m-0 font-weight-bold text-primary">Clientes </h5>
         </div>
         {/* <!-- Page Heading --> */}
         <div className="row my-3">

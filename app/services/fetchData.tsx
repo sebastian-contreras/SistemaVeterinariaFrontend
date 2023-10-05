@@ -1,87 +1,147 @@
-import { CitasPendientes, Historia, Mascotas, Persona, Veterinario } from "../interfaces/interfaces";
+import { createPublicKey } from "crypto";
+import { authOptions } from "../api/auth/[...nextauth]/route";
+import {
+  CitasPendientes,
+  Historia,
+  Mascotas,
+  Persona,
+  Veterinario,
+} from "../interfaces/interfaces";
+import { getServerSession } from "next-auth/next";
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+export const getTokenSession = async (): Promise<string> => {
+  const session = await getServerSession(authOptions);
+  if (session) {
+    return session.user.token as string;
+  }
+  throw new Error("No hay session");
+};
 
 // PERFIL DE MASCOTA
 export const fetchMascota = async (id: Number): Promise<Mascotas> => {
-    const data = await fetch(`${apiUrl}/api/mascotas/perfil/${id}`, {
-      cache: "no-cache",
-    });
-    const mascota = data.json();
-    return mascota;
-  };
+  const token = await getTokenSession();
+  const headers = { Authorization: `Bearer ${token}` };
+  const data = await fetch(`${apiUrl}/api/mascotas/perfil/${id}`, {
+    cache: "no-cache",
+    headers,
+  });
+  const mascota = data.json();
+  return mascota;
+};
 //   CITAS DE UNA MASCOTAS
-  export const fetchCitasMascota = async (id: Number): Promise<CitasPendientes[]> => {
-    const data = await fetch(`${apiUrl}/api/citasmascota/${id}`);
-    const citas = data.json();
-    return citas;
-  };
+export const fetchCitasMascota = async (
+  id: Number
+): Promise<CitasPendientes[]> => {
+  const token = await getTokenSession();
+  const headers = { Authorization: `Bearer ${token}` };
+  const data = await fetch(`${apiUrl}/api/citasmascota/${id}`, {
+    headers,
+  });
+  const citas = data.json();
+  return citas;
+};
 //   HISTORIAS DE UNA MASCOTA
-  export const fetchHistoriaMascota = async (id: Number): Promise<Historia[]> => {
-    const data = await fetch(`${apiUrl}/api/historia/${id}`);
-    const historia = data.json();
-    return historia;
-  };
+export const fetchHistoriaMascota = async (id: Number): Promise<Historia[]> => {
+  const token = await getTokenSession();
+  const headers = { Authorization: `Bearer ${token}` };
+
+  const data = await fetch(`${apiUrl}/api/historia/${id}`, {
+    headers,
+  });
+  const historia = data.json();
+  return historia;
+};
 
 //   TODAS LAS CITAS
-  export const fetchCitasPendientes = async():Promise<CitasPendientes[]> => {
-    const data = await fetch(`${apiUrl}/api/citaspendiente`,{cache:"no-cache"});
-    const citas= data.json();
-    return citas;
-  };
+export const fetchCitasPendientes = async (): Promise<CitasPendientes[]> => {
+  const token = await getTokenSession();
+  const headers = { Authorization: `Bearer ${token}` };
+  const data = await fetch(`${apiUrl}/api/citaspendiente`, {
+    cache: "no-cache",
+    headers,
+  });
+  const citas = data.json();
+  return citas;
+};
 
 // TODOS LOS CLIENTES
-  export const fetchAllClientes = async (): Promise<Persona[]> => {
-    const data = await fetch(`${apiUrl}/api/clientes`, {
-      cache: "no-cache",
-    });
-    const clientes = data.json();
-    return clientes;
-  };
+export const fetchAllClientes = async (): Promise<Persona[]> => {
+  const token = await getTokenSession();
+  const headers = { Authorization: `Bearer ${token}` };
+  const data = await fetch(`${apiUrl}/api/clientes`, {
+    cache: "no-cache",
+    headers,
+  });
+  const clientes = data.json();
+  return clientes;
+};
 
 //   TODAS LAS MASCOTAS
-  export const fetchMascotas = async (): Promise<Mascotas[]> => {
-    const data = await fetch(`${apiUrl}/api/mascotas`, {
-      cache: "no-cache",
-    });
-  
-    const mascotas = data.json();
-    return mascotas;
-  };
+export const fetchMascotas = async (): Promise<Mascotas[]> => {
+  const token = await getTokenSession();
+  const headers = { Authorization: `Bearer ${token}` };
+
+  const data = await fetch(`${apiUrl}/api/mascotas`, {
+    cache: "no-cache",
+    headers: {
+      Authentication: `Bearer ${token}`,
+    },
+  });
+
+  const mascotas = data.json();
+  return mascotas;
+};
 
 // PERFIL DE PERSONA
-  export const fetchPerfilCliente = async (dni: String): Promise<Persona> => {
-    const data = await fetch(`${apiUrl}/api/clientes/${dni}`, {
-      cache: "no-cache",
-    });
-    const clientes = data.json();
-    return clientes;
-  };
+export const fetchPerfilCliente = async (dni: String): Promise<Persona> => {
+  const token = await getTokenSession();
+  const headers = { Authorization: `Bearer ${token}` };
+  const data = await fetch(`${apiUrl}/api/clientes/${dni}`, {
+    cache: "no-cache",
+    headers,
+  });
+  const clientes = data.json();
+  return clientes;
+};
 
 //MASCOTAS DE UNA PERSONA
-  export const fetchMascotasPersona = async (dni: String): Promise<Mascotas[]> => {
-    const data = await fetch(`${apiUrl}/api/mascotas/${dni}`, {
-      cache: "no-cache",
-    });
-    const mascotas = data.json();
-    return mascotas;
-  };
-  //CITAS DE UNA PERSONA
-  export const fetchCitasPersona = async (dni: String): Promise<CitasPendientes[]> => {
-    const data = await fetch(`${apiUrl}/api/citaspendiente/${dni}`, {
-      cache: "no-cache",
-    });
-    const citas = data.json();
-    return citas;
-  };
+export const fetchMascotasPersona = async (
+  dni: String
+): Promise<Mascotas[]> => {
+  const token = await getTokenSession();
+  const headers = { Authorization: `Bearer ${token}` };
+  const data = await fetch(`${apiUrl}/api/mascotas/${dni}`, {
+    cache: "no-cache",
+    headers,
+  });
+  const mascotas = data.json();
+  return mascotas;
+};
+//CITAS DE UNA PERSONA
+export const fetchCitasPersona = async (
+  dni: String
+): Promise<CitasPendientes[]> => {
+  const token = await getTokenSession();
+  const headers = { Authorization: `Bearer ${token}` };
+  const data = await fetch(`${apiUrl}/api/citaspendiente/${dni}`, {
+    cache: "no-cache",
+    headers,
+  });
+  const citas = data.json();
+  return citas;
+};
 
-
-  //
-  export const fetchVeterinarios = async():Promise<Veterinario[]> => {
-    const data = await fetch(`${apiUrl}/api/veterinarios`, {
-      cache: "no-cache",
-    });
-    const veterinarios = data.json();
-    console.log(data)
-    return veterinarios;
-  };
+//
+export const fetchVeterinarios = async (): Promise<Veterinario[]> => {
+  const token = await getTokenSession();
+  const headers = { Authorization: `Bearer ${token}` };
+  const data = await fetch(`${apiUrl}/api/veterinarios`, {
+    cache: "no-cache",
+    headers,
+  });
+  const veterinarios = data.json();
+  console.log(data);
+  return veterinarios;
+};

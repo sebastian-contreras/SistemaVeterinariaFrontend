@@ -48,3 +48,10 @@ export interface Historia {
   veterinario: Veterinario;
   mascota: Mascotas;
 }
+export interface UsuarioLog {
+    dni: string;
+    username: string;
+    nombre: string;
+    apellido: string;
+    token: string;
+  };

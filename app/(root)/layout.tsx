@@ -9,6 +9,7 @@ import FooterBar from "../components/FooterBar";
 import Head from "next/head";
 import Script from "next/script";
 import ImportBsj from "../components/ImportBsj";
+import Providers from "../Providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,12 +24,14 @@ export default function RootLayout({
   children: React.ReactNode;
   newModal: React.ReactNode;
 }) {
-  return (
+  return (<html>
     <body id="page-top">
+      <Providers>
       {/* <!-- Page Wrapper --> */}
       <div id="wrapper">
         {/* <!-- Sidebar --> */}
         <Sidebar />
+
         {/* <!-- End of Sidebar --> */}
 
         {/* <!-- Content Wrapper --> */}
@@ -36,12 +39,15 @@ export default function RootLayout({
           {/* <!-- Main Content --> */}
           <div id="content">
             {/* <!-- Topbar --> */}
+            
             <NavBar />
             {/* <!-- End of Topbar --> */}
 
             {/* <!-- Begin Page Content --> */}
             <div className="container-fluid">
+
               {children}
+
               {/* <!-- Page Heading --> */}
             </div>
             {/* <!-- /.container-fluid --> */}
@@ -61,49 +67,8 @@ export default function RootLayout({
         <i className="fas fa-angle-up"></i>
       </a>
 
-      {/* <!-- Logout Modal--> */}
-      <div
-        className="modal fade"
-        id="logoutModal"
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">
-                Ready to Leave?
-              </h5>
-              <button
-                className="close"
-                type="button"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">×</span>
-              </button>
-            </div>
-            <div className="modal-body">
-              Select "Logout" below if you are ready to end your current
-              session.
-            </div>
-            <div className="modal-footer">
-              <button
-                className="btn btn-secondary"
-                type="button"
-                data-dismiss="modal"
-              >
-                Cancel
-              </button>
-              <a className="btn btn-primary" href="login.html">
-                Logout
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      {newModal}
+      </Providers>
     </body>
+    </html>
   );
 }

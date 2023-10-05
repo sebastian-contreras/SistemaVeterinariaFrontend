@@ -1,3 +1,4 @@
+"use client"
 import ChangeHistoria from '@/app/(root)/components/Add/ChangeHistoria'
 import { CitasPendientes } from '@/app/interfaces/interfaces'
 import { deleteCitaPendiente } from '@/app/services/deleteData'

@@ -12,7 +12,6 @@ function TablaClientes({clientes}:{clientes:Persona[]}) {
   const deletePersonaTabla = async (id:String) =>{
     await deletePersona(id);
     router.refresh()
-    
   }
   return (
     <table

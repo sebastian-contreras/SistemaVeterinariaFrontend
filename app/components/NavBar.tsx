@@ -1,12 +1,13 @@
 "use client";
 import React, { FormEvent, useEffect, useState } from "react";
 import "jquery";
-import "../../public/static/vendor/bootstrap/js/bootstrap.bundle.min";
 
 import Link from "next/link";
 import Script from "next/script";
 import ImportBsj from "./ImportBsj";
 import { useRouter } from "next/navigation";
+import { signOut, useSession } from "next-auth/react";
+import { UsuarioLog } from "../interfaces/interfaces";
 
 function NavBar() {
   const [searchClient, setSearchClient] = useState<string>("");
@@ -18,13 +19,13 @@ function NavBar() {
     // Realiza la acción que deseas, en este caso, redireccionar a la página de perfil
     router.push(`/perfil/${searchClient}`);
   };
-
-
+  const { data: session, status } = useSession();
+  const usuarioLog = session?.user
+  console.log(session, status)
   return (
     <>
       <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
         {/* <!-- Sidebar Toggle (Topbar) --> */}
-
         <button
           id="sidebarToggleTop"
           className="btn btn-link d-md-none rounded-circle mr-3"
@@ -273,7 +274,7 @@ function NavBar() {
               aria-expanded="false"
             >
               <span className="mr-2 d-none d-lg-inline text-gray-600 small">
-                Douglas McGee
+              {`${usuarioLog?.nombre} ${usuarioLog?.apellido}`}
               </span>
               <img
                 className="img-profile rounded-circle"
@@ -300,11 +301,11 @@ function NavBar() {
               <div className="dropdown-divider"></div>
               <a
                 className="dropdown-item"
-                href="#"
-                data-toggle="modal"
-                data-target="#logoutModal"
+                onClick={() => {
+                  signOut();
+                }}
               >
-                <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" ></i>
                 Logout
               </a>
             </div>
