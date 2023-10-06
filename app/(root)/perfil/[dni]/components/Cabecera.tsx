@@ -1,7 +1,5 @@
 import { Persona } from "@/app/interfaces/interfaces";
 import Image from "next/image";
-import React from "react";
-
 function Cabecera({ perfil }: { perfil: Persona }) {
   return (
     <div className="card shadow mb-4">

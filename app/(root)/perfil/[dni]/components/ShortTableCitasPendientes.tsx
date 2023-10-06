@@ -1,6 +1,4 @@
 import { CitasPendientes } from '@/app/interfaces/interfaces'
-import React from 'react'
-
 function ShortTableCitasPendientes({citas}:{citas:CitasPendientes[]}) {
   return (
 <table className="table table-bordered" id="dataTable" width="100%">

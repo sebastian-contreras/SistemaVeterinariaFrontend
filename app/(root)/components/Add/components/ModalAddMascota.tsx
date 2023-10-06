@@ -1,5 +1,5 @@
 import { useRouter } from "next/navigation";
-import React, { FormEvent, useRef } from "react";
+import { FormEvent, useRef } from "react";
 import { MascotasDtoPost } from "../../postDto/MascotaDtoPost";
 import { postNuevaMascota } from "@/app/services/postData";
 import { Button, Form, Modal } from "react-bootstrap";

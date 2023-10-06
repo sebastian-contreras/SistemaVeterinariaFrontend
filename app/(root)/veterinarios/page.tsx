@@ -1,6 +1,4 @@
 import { Veterinario } from "@/app/interfaces/interfaces";
-import Link from "next/link";
-import React from "react";
 import { fetchVeterinarios } from "@/app/services/fetchData";
 import TablaVeterinarios from "./components/TablaVeterinarios";
 import AddPerson from "../components/Add/AddPerson";

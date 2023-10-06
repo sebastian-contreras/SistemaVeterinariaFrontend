@@ -3,8 +3,6 @@ import { Persona } from '@/app/interfaces/interfaces'
 import { deletePersona } from '@/app/services/deleteData'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { Router } from 'next/router'
-import React from 'react'
 
 
 function TablaClientes({clientes}:{clientes:Persona[]}) {

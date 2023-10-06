@@ -1,12 +1,8 @@
 import { Persona } from "@/app/interfaces/interfaces";
-import Link from "next/link";
-import React, { useState } from "react";
+import { useState } from "react";
 import { fetchAllClientes } from "@/app/services/fetchData";
 import TablaClientes from "./components/TablaClientes";
 import AddPerson from "../components/Add/AddPerson";
-import { useSession } from "next-auth/react";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 
 const getClientes = async (): Promise<Persona[]> => {

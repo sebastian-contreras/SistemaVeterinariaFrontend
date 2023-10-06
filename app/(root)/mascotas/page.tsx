@@ -1,7 +1,4 @@
 import { Mascotas } from "@/app/interfaces/interfaces";
-import React from "react";
-import MASCOTAS from "../../data/mascotas.json";
-import Link from "next/link";
 import { fetchMascotas } from "@/app/services/fetchData";
 import TablaMascotas from "./components/TablaMascotas";
 const getMascotas = async (): Promise<Mascotas[]> => {

@@ -3,7 +3,6 @@ import { Mascotas } from '@/app/interfaces/interfaces'
 import { deleteMascota } from '@/app/services/deleteData'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import React from 'react'
 function TablaMascotas({mascotas}:{mascotas:Mascotas[]}) {
   const router = useRouter();
   const deleteMascotasTabla = async (id:Number) =>{

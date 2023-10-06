@@ -1,5 +1,3 @@
-import React from 'react'
-
 function loading() {
   return (
     <div className="card shadow mb-4">

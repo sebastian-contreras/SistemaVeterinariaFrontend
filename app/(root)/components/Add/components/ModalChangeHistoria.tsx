@@ -1,8 +1,7 @@
 import { CitasPendientes, Veterinario } from "@/app/interfaces/interfaces";
 import { useRouter } from "next/navigation";
-import React, { FormEvent, useRef } from "react";
+import { FormEvent, useRef } from "react";
 import { CitaDtoPost } from "../../postDto/CitaDtoPost";
-import ChangeHistoria from "../ChangeHistoria";
 import { newHistoria } from "@/app/services/postData";
 import { Button, Modal } from "react-bootstrap";
 interface ModalProps {

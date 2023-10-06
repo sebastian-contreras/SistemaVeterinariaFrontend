@@ -1,9 +1,8 @@
-import React, { FormEvent, useRef, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { PersonaDtoPost } from "../../postDto/PersonaDtoPost";
 import { postNuevaPersona } from "@/app/services/postData";
 import { useRouter } from "next/navigation";
-import { Persona } from "@/app/interfaces/interfaces";
 interface ModalProps {
   show: boolean;
   setShow: (open: boolean) => boolean | void;

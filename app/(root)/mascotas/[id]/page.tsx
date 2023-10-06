@@ -4,10 +4,8 @@ import {
   Mascotas,
   Veterinario,
 } from "@/app/interfaces/interfaces";
-import React from "react";
 import { fetchCitasMascota, fetchHistoriaMascota, fetchMascota, fetchVeterinarios } from "@/app/services/fetchData";
 import AddCita from "../../components/Add/AddCita";
-import ChangeHistoria from "../../components/Add/ChangeHistoria";
 import CabeceraMascota from "./components/CabeceraMascota";
 import TablaCitasPendientesShort from "./components/TablaCitasPendientesShort";
 import SeccionHistoria from "./components/SeccionHistoria";

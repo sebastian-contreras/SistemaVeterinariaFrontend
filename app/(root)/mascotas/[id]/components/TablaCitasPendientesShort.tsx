@@ -3,9 +3,6 @@ import ChangeHistoria from '@/app/(root)/components/Add/ChangeHistoria'
 import { CitasPendientes } from '@/app/interfaces/interfaces'
 import { deleteCitaPendiente } from '@/app/services/deleteData'
 import { useRouter } from 'next/navigation'
-import React from 'react'
-
-
 function TablaCitasPendientesShort({citas}:{citas:CitasPendientes[]}) {
   const router = useRouter();
   const deleteCitaPendienteTabla = async (id:Number) =>{

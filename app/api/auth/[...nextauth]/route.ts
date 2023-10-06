@@ -2,7 +2,7 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions : NextAuthOptions = {
-  secret: process.env.AUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
   session: {
     maxAge: 4 * 60 * 60 // 4 hours
   },
@@ -43,6 +43,7 @@ export const authOptions : NextAuthOptions = {
   },
   pages: {
     signIn: "/login",
+    signOut: "/login",
   },
 };
 

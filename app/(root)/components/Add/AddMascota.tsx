@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import { useState } from 'react'
 import ModalAddMascota from './components/ModalAddMascota';
 import { Persona } from '@/app/interfaces/interfaces';
 

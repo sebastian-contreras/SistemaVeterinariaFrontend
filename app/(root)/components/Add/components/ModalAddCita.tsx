@@ -1,6 +1,6 @@
 import { Mascotas, Persona, Veterinario } from "@/app/interfaces/interfaces";
 import { useRouter } from "next/navigation";
-import React, { FormEvent, useRef } from "react";
+import  { FormEvent, useRef } from "react";
 import { CitaDtoPost } from "../../postDto/CitaDtoPost";
 import { postNuevoTurno } from "@/app/services/postData";
 import { Button, Form, Modal } from "react-bootstrap";

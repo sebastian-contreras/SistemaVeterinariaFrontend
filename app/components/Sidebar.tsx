@@ -1,10 +1,5 @@
 "use client";
-import React from "react";
-import "jquery"
 import Link from "next/link";
-import Script from "next/script";
-import ImportBsj from "./ImportBsj";
-
 function Sidebar() {
   
   return (

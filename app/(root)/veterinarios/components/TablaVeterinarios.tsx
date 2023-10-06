@@ -1,7 +1,5 @@
 import { Veterinario } from '@/app/interfaces/interfaces'
 import Link from 'next/link'
-import React from 'react'
-
 function TablaVeterinarios({veterinarios}:{veterinarios:Veterinario[]}) {
   return (
     <table className="table table-bordered" id="dataTable" width="100%">

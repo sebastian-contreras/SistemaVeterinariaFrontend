@@ -3,7 +3,6 @@ import {
   Mascotas,
   Persona,
 } from "@/app/interfaces/interfaces";
-import Link from "next/link";
 import React from "react";
 import {
   fetchCitasPersona,
@@ -14,8 +13,6 @@ import ShortTableMascotas from "./components/ShortTableMascotas";
 import ShortTableCitasPendientes from "./components/ShortTableCitasPendientes";
 import Cabecera from "./components/Cabecera";
 import AddMascota from "../../components/Add/AddMascota";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { getServerSession } from "next-auth";
 
 const getClientes = async (dni: String): Promise<Persona> => {
   return fetchPerfilCliente(dni);

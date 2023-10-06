@@ -1,9 +1,8 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
+import { getSession } from "next-auth/react";
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL
 const getTokenSession = async (): Promise<string> => {
-    const session = await getServerSession(authOptions);
+  const session = await getSession();
     if (session) {
       return session.user.token as string;
     }

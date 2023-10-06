@@ -1,6 +1,4 @@
 import { Historia } from '@/app/interfaces/interfaces'
-import React from 'react'
-
 function SeccionHistoria({historias}:{historias:Historia[]}) {
   return (
     <div className="card shadow mb-4">

@@ -1,6 +1,4 @@
 import { Mascotas } from '@/app/interfaces/interfaces'
-import React from 'react'
-
 function CabeceraMascota({mascota}:{mascota:Mascotas}) {
   return (
     <div className="card shadow mb-4">

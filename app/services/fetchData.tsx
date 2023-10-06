@@ -11,13 +11,16 @@ import { getServerSession } from "next-auth/next";
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-export const getTokenSession = async (): Promise<string> => {
+
+
+const getTokenSession = async (): Promise<string> => {
   const session = await getServerSession(authOptions);
   if (session) {
     return session.user.token as string;
   }
   throw new Error("No hay session");
 };
+
 
 // PERFIL DE MASCOTA
 export const fetchMascota = async (id: Number): Promise<Mascotas> => {
@@ -85,9 +88,7 @@ export const fetchMascotas = async (): Promise<Mascotas[]> => {
 
   const data = await fetch(`${apiUrl}/api/mascotas`, {
     cache: "no-cache",
-    headers: {
-      Authentication: `Bearer ${token}`,
-    },
+    headers,
   });
 
   const mascotas = data.json();
@@ -142,6 +143,5 @@ export const fetchVeterinarios = async (): Promise<Veterinario[]> => {
     headers,
   });
   const veterinarios = data.json();
-  console.log(data);
   return veterinarios;
 };

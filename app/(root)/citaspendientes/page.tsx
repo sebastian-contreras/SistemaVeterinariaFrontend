@@ -1,13 +1,10 @@
 import { CitasPendientes } from "@/app/interfaces/interfaces";
-import React from "react";
+import { fetchCitasPendientes } from "@/app/services/fetchData";
 const getCitas = async():Promise<CitasPendientes[]> => {
-  const data = await fetch("http://localhost:8080/api/citaspendiente",{cache:"no-cache"});
-  const citas= data.json();
-  return citas;
+  return await fetchCitasPendientes()
 };
 async function Citas() {
   const citas = await getCitas();
-  // console.log(citas[0])
   return (
     <>
       <div className="card shadow mb-4">
