@@ -1,6 +1,15 @@
+import AddCredencial from "@/app/(root)/components/Add/AddCredencial";
+import { ROL } from "@/app/enum/ROL";
 import { Persona } from "@/app/interfaces/interfaces";
 import Image from "next/image";
-function Cabecera({ perfil }: { perfil: Persona }) {
+import "./Cabecera.css"
+function Cabecera({
+  perfil,
+  hasCredential,
+}: {
+  perfil: Persona;
+  hasCredential: boolean;
+}) {
   return (
     <div className="card shadow mb-4">
       <div className="card-header py-3">
@@ -11,14 +20,9 @@ function Cabecera({ perfil }: { perfil: Persona }) {
       <div className="card-body">
         <div className="row">
           <div className="col-md-3 col-sm-12   pl-5">
-            <Image
-              className="rounded-circle"
-              src="/img/one.jpg"
-              alt="..."
-              width={180}
-              height={180}
-              layout="fixed"
-            />
+            <div className="imginiciales">
+              <span className="bold">{perfil.nombre[0]}{perfil.apellido[0]}</span>
+            </div>
           </div>
           <div className="col-md-9 col-sm-12 ">
             <div className="input-group mb-3 col-9">
@@ -106,6 +110,9 @@ function Cabecera({ perfil }: { perfil: Persona }) {
             ) : (
               ""
             )}
+            <div className="ml-3">
+              {!hasCredential && perfil.perfilRol==ROL.VETERINARIO ? <AddCredencial dni={perfil.dni.toString()} /> : ""}
+            </div>
           </div>
         </div>
       </div>

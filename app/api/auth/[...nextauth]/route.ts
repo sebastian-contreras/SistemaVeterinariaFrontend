@@ -4,7 +4,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 export const authOptions : NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   session: {
-    maxAge: 4 * 60 * 60 // 4 hours
+    maxAge: 3 * 60 * 60 // 4 hours
   },
   providers: [
     CredentialsProvider({
@@ -14,6 +14,7 @@ export const authOptions : NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
+
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
           {
@@ -25,8 +26,8 @@ export const authOptions : NextAuthOptions = {
             headers: { "Content-Type": "application/json" },
           }
         );
+        if (!res.ok) throw new Error("Credenciales incorrectas");
         const user = await res.json();
-        if (user.error) throw user;
 
         return user;
       },

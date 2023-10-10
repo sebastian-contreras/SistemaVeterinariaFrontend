@@ -70,10 +70,11 @@ export const fetchCitasPendientes = async (): Promise<CitasPendientes[]> => {
 };
 
 // TODOS LOS CLIENTES
-export const fetchAllClientes = async (): Promise<Persona[]> => {
+//Paginacion
+export const fetchAllClientes = async (page?:number): Promise<Persona[]> => {
   const token = await getTokenSession();
   const headers = { Authorization: `Bearer ${token}` };
-  const data = await fetch(`${apiUrl}/api/clientes`, {
+  const data = await fetch(`${apiUrl}/api/clientes${page!==undefined ? `?page=${page}` : '' }`, {
     cache: "no-cache",
     headers,
   });
@@ -81,12 +82,13 @@ export const fetchAllClientes = async (): Promise<Persona[]> => {
   return clientes;
 };
 
+
 //   TODAS LAS MASCOTAS
-export const fetchMascotas = async (): Promise<Mascotas[]> => {
+export const fetchMascotas = async (page?:number): Promise<Mascotas[]> => {
   const token = await getTokenSession();
   const headers = { Authorization: `Bearer ${token}` };
-
-  const data = await fetch(`${apiUrl}/api/mascotas`, {
+  console.log(`${apiUrl}/api/mascotas${page != undefined ? `?page=${page}` : ''}`)
+  const data = await fetch(`${apiUrl}/api/mascotas${page != undefined ? `?page=${page}` : ''}`, {
     cache: "no-cache",
     headers,
   });
@@ -134,7 +136,7 @@ export const fetchCitasPersona = async (
   return citas;
 };
 
-//
+//TRAER TODOS LOS VETERINARIOS
 export const fetchVeterinarios = async (): Promise<Veterinario[]> => {
   const token = await getTokenSession();
   const headers = { Authorization: `Bearer ${token}` };
@@ -144,4 +146,19 @@ export const fetchVeterinarios = async (): Promise<Veterinario[]> => {
   });
   const veterinarios = data.json();
   return veterinarios;
+};
+
+//TIENE CREDENCIAL UN VETERINARIO?
+export const hasCredential = async (dni:string): Promise<boolean> => {
+  const token = await getTokenSession();
+  const headers = { Authorization: `Bearer ${token}` };
+  const data = await fetch(`${apiUrl}/api/hascredential/${dni}`, {
+    cache: "no-cache",
+    headers,
+  });
+  if(!data.ok){
+    return false
+  }
+  const hasCredential = data.json();
+  return hasCredential;
 };

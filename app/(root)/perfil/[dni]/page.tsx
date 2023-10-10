@@ -8,33 +8,41 @@ import {
   fetchCitasPersona,
   fetchMascotasPersona,
   fetchPerfilCliente,
+  hasCredential,
 } from "@/app/services/fetchData";
 import ShortTableMascotas from "./components/ShortTableMascotas";
 import ShortTableCitasPendientes from "./components/ShortTableCitasPendientes";
 import Cabecera from "./components/Cabecera";
 import AddMascota from "../../components/Add/AddMascota";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { isAdmin } from "@/app/services/session";
+import { ROL } from "@/app/enum/ROL";
 
 const getClientes = async (dni: String): Promise<Persona> => {
-  return fetchPerfilCliente(dni);
+  return await fetchPerfilCliente(dni);
 };
 const getMascotas = async (dni: String): Promise<Mascotas[]> => {
-  return fetchMascotasPersona(dni);
+  return await fetchMascotasPersona(dni);
 };
 const getCitas = async (dni: String): Promise<CitasPendientes[]> => {
-  return fetchCitasPersona(dni);
+  return await fetchCitasPersona(dni);
 };
-
+const getHasCredential = async (dni:String) : Promise<boolean> => {
+  return await hasCredential(dni.toString());
+}
 async function perfil({ params }: { params: { dni: String } }) {
+  const session = await getServerSession(authOptions)
   const parametro = params.dni;
   const perfil = await getClientes(parametro);
   const mascotasres = await getMascotas(parametro);
   const citas = await getCitas(parametro);
-
+  const tienenCred = await getHasCredential(parametro)
   return (
     // <div className="col-lg-12">
     <>
       {/* CABECERA PERFIL */}
-      <Cabecera perfil={perfil} />
+      <Cabecera perfil={perfil} hasCredential={tienenCred}/>
 
       {/* SECCION CITAS PENDIENTES */}
 
@@ -62,7 +70,7 @@ async function perfil({ params }: { params: { dni: String } }) {
               </h5>
             </div>
             <div className="col-3">
-              <AddMascota dueno={perfil} />
+              {isAdmin(session?.user.rol)?<AddMascota dueno={perfil}/>:""}
             </div>
           </div>
         </div>

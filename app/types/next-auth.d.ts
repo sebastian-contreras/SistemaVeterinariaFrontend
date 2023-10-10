@@ -1,8 +1,5 @@
 import "next-auth";
-
-enum Roles{
-  "USUARIO", "EMPLEADO", "VETERINARIO", "ADMINISTRADOR"
-}
+import { ROL } from "../enum/ROL";
 
 
 declare module "next-auth" {
@@ -13,7 +10,7 @@ declare module "next-auth" {
       nombre: string;
       apellido: string;
       token: string;
-      rol: Roles;
+      rol: ROL;
     };
   }
 }

@@ -1,10 +1,16 @@
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { CitasPendientes } from "@/app/interfaces/interfaces";
 import { fetchCitasPendientes } from "@/app/services/fetchData";
+import { isAdmin } from "@/app/services/session";
+import { getServerSession } from "next-auth";
+import Link from "next/link";
 const getCitas = async():Promise<CitasPendientes[]> => {
   return await fetchCitasPendientes()
 };
 async function Citas() {
   const citas = await getCitas();
+    const session = await getServerSession(authOptions);
+
   return (
     <>
       <div className="card shadow mb-4">
@@ -38,7 +44,7 @@ async function Citas() {
                   <th>Mascota</th>
                   <th>Dueño</th>
                   <th>Veterinario</th>
-                  <th>Opciones</th>
+                  {isAdmin(session?.user.rol)?<th>Opciones</th>:""}
                 </tr>
               </thead>
               <tfoot>
@@ -50,7 +56,7 @@ async function Citas() {
                   <th>Mascota</th>
                   <th>Dueño</th>
                   <th>Veterinario</th>
-                  <th>Opciones</th>
+                  {isAdmin(session?.user.rol)?<th>Opciones</th>:""}
                 </tr>
               </tfoot>
               <tbody>
@@ -63,11 +69,16 @@ async function Citas() {
                   <td>{cita.mascota.nombre} - {cita.mascota.tipo}</td>
                   <td>{cita.mascota.dueno.dni} - {cita.mascota.dueno.nombre} {cita.mascota.dueno.apellido}</td>
                   <td>{cita.veterinario.nombre} {cita.veterinario.apellido} - {cita.veterinario.matricula}</td>
+                  {isAdmin(session?.user.rol)?
                   <td>
+                    {cita.mascota.dueno ? <Link href="#">
                     <i className="fas fa-solid fa-id-badge pr-2"></i>
-                    <i className="fas fa-solid fa-trash pr-2"></i>
-                    <i className="fas fa-solid fa-plus"></i>
-                  </td>
+                    </Link> : ""}
+                    
+                    <Link href={`/mascotas/${cita.mascota.idMascotas}`}>
+                        <i className="fas fa-solid fa-paw pr-2"></i>
+                      </Link>
+                  </td>:""}
                 </tr>
                 ))}
               </tbody>

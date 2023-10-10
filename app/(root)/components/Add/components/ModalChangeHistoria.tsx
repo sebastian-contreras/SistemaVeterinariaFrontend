@@ -4,6 +4,7 @@ import { FormEvent, useRef } from "react";
 import { CitaDtoPost } from "../../postDto/CitaDtoPost";
 import { newHistoria } from "@/app/services/postData";
 import { Button, Modal } from "react-bootstrap";
+import { toast } from "react-toastify";
 interface ModalProps {
   show: boolean;
   setShow: (open: boolean) => boolean | void;
@@ -19,7 +20,6 @@ function ModalChangeHistoria({ show, setShow, cita }: ModalProps) {
       setShow(false);
       const formData = new FormData(formRef.current);
       const value = Object.fromEntries(formData);
-      let perfil = "USUARIO";
       const newCita: CitaDtoPost = {
         fecha: cita.fecha,
         consultorio: cita.consultorio,
@@ -31,8 +31,10 @@ function ModalChangeHistoria({ show, setShow, cita }: ModalProps) {
         descripcion:value.descripcion.toString(),
         imagenes:""
       };
-      await newHistoria(newCita, cita.idCita);
+      let res = await newHistoria(newCita, cita.idCita);
       router.refresh();
+      res.ok ? toast.success("Éxito!") : toast.error("Error");
+
     }
   }
   return (

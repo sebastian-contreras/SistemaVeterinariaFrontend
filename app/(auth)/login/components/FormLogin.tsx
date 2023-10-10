@@ -5,8 +5,8 @@ import { FormEvent, useState } from "react";
 
 function FormLogin() {
   const [errors, setErrors] = useState<string[]>([]);
-  const [username, setUsername] = useState("test");
-  const [password, setPassword] = useState("123123");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const router = useRouter();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {

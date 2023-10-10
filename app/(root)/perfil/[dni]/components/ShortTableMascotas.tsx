@@ -1,10 +1,15 @@
 "use client"
+import { ROL } from '@/app/enum/ROL';
 import { Mascotas } from '@/app/interfaces/interfaces'
 import { deleteMascota } from '@/app/services/deleteData';
+import { isAdmin } from '@/app/services/session';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link'
 import { useRouter } from 'next/navigation';
 function ShortTableMascotas({mascotas}:{mascotas:Mascotas[]}) {
+  const {data}= useSession();
   const router = useRouter();
+
   const deleteMascotasTabla = async (id:Number) =>{
       await deleteMascota(id);
       router.refresh()
@@ -18,7 +23,7 @@ function ShortTableMascotas({mascotas}:{mascotas:Mascotas[]}) {
         <th>Nombre</th>
         <th>tipo</th>
         <th>sexo</th>
-        <th>Options</th>
+        {isAdmin(data?.user.rol)?<th>Options</th>:""}
       </tr>
     </thead>
     <tbody>
@@ -28,12 +33,14 @@ function ShortTableMascotas({mascotas}:{mascotas:Mascotas[]}) {
           <td>{mascota.nombre}</td>
           <td>{mascota.tipo}</td>
           <td>{mascota.sexo}</td>
+          {isAdmin(data?.user.rol)?
+
           <td>
                 <Link href={`/mascotas/${mascota.idMascotas}`}>
                   <i className="fas fa-solid fa-paw pr-2"></i>
                 </Link>
-                <i className="fas fa-solid fa-trash pr-2" onClick={()=>deleteMascotasTabla(mascota.idMascotas)}></i>
-              </td>
+                <a type='button' className="fas text-danger fa-solid fa-trash pr-2" onClick={()=>deleteMascotasTabla(mascota.idMascotas)}></a>
+              </td>:""}
         </tr>
       ))}
     </tbody>

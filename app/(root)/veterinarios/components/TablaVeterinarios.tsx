@@ -1,6 +1,9 @@
 import { Veterinario } from '@/app/interfaces/interfaces'
+import { getServerSession } from 'next-auth'
 import Link from 'next/link'
-function TablaVeterinarios({veterinarios}:{veterinarios:Veterinario[]}) {
+
+async function TablaVeterinarios({veterinarios}:{veterinarios:Veterinario[]}) {
+
   return (
     <table className="table table-bordered" id="dataTable" width="100%">
               <thead>
@@ -36,8 +39,7 @@ function TablaVeterinarios({veterinarios}:{veterinarios:Veterinario[]}) {
                   <td>{veterinario.direccion}</td>
                   <td>
                     <Link href={`/perfil/${veterinario.dni}`}><i className="fas fa-solid fa-id-badge pr-2"></i></Link>
-                    <i className="fas fa-solid fa-trash pr-2"></i>
-                    <i className="fas fa-solid fa-plus"></i>
+                    <a type='button' className=" fas text-danger fa-solid fa-trash pr-2"></a>
                   </td>
                 </tr>
                 ))}

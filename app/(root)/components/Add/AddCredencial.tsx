@@ -2,9 +2,9 @@
 import React, { useState } from 'react'
 import { Mascotas, Persona, Veterinario } from '@/app/interfaces/interfaces';
 import ModalAddCita from './components/ModalAddCita';
-import { toast } from 'react-toastify';
+import ModalAddCredencial from './components/ModalAddCredencial';
 
-function AddCita({mascota,datos}:{mascota:Mascotas,datos:Veterinario[]}) {
+function AddCredencial({dni}:{dni:string}) {
     const [show, setShow] = useState<boolean>(false);
     const handleShow = () => setShow(true);    
 
@@ -16,10 +16,11 @@ function AddCita({mascota,datos}:{mascota:Mascotas,datos:Veterinario[]}) {
         className="btn btn-primary btn-sm "
         onClick={handleShow}
       >
-        Nuevo turno
+        Otorgar Credencial
       </button>
-      <ModalAddCita datos={datos}  show={show} setShow={setShow} mascota={mascota}/>
+      <ModalAddCredencial show={show} setShow={setShow} dni={dni}/>
+
     </>  )
 }
 
-export default AddCita
+export default AddCredencial

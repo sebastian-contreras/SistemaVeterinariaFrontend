@@ -55,3 +55,9 @@ export interface UsuarioLog {
     apellido: string;
     token: string;
   };
+  export interface Credencial {
+    dni: string;
+    username: string;
+    password: string;
+    perfilRol: string;
+  };

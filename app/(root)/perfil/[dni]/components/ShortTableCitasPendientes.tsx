@@ -1,5 +1,22 @@
+"use client"
+import ChangeHistoria from '@/app/(root)/components/Add/ChangeHistoria'
 import { CitasPendientes } from '@/app/interfaces/interfaces'
-function ShortTableCitasPendientes({citas}:{citas:CitasPendientes[]}) {
+import { deleteCitaPendiente } from '@/app/services/deleteData'
+import { isAdmin } from '@/app/services/session'
+import { useSession } from 'next-auth/react'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+async function ShortTableCitasPendientes({citas,dashboard}:{citas:CitasPendientes[],dashboard?:boolean}) {
+  const {data} = useSession()
+  const router = useRouter()
+  if (dashboard === undefined) {
+    dashboard = false;
+  }
+  const deleteCitaPendienteTabla = async (id:Number) =>{
+    await deleteCitaPendiente(id);
+    router.refresh()
+  }
+      
   return (
 <table className="table table-bordered" id="dataTable" width="100%">
           <thead>
@@ -7,8 +24,8 @@ function ShortTableCitasPendientes({citas}:{citas:CitasPendientes[]}) {
               <th>Fecha</th>
               <th>Consultorio</th>
               <th>Mascota</th>
-              <th>Veterinario</th>
-              <th>Opciones</th>
+             {dashboard ? <th>Dueño</th> : <th>Veterinario</th>}
+              <th>Options</th>
             </tr>
           </thead>
 
@@ -20,19 +37,34 @@ function ShortTableCitasPendientes({citas}:{citas:CitasPendientes[]}) {
                 <td>
                   {cita.mascota.idMascotas} - {cita.mascota.nombre}
                 </td>
-                <td>
+                {dashboard?                <td>
+                  {cita.mascota.dueno.nombre} {cita.mascota.dueno.apellido}
+                </td> :                 <td>
                   {cita.veterinario.nombre} {cita.veterinario.apellido}
-                </td>
+                </td>}
+
+                
                 <td>
 
-                                 <a
-                    data-target={`#modalhistoria${cita.idCita}`}
-                    data-toggle="modal"
-                    type="button"
-                  >
-                    <i className="fas fa-solid fa-check pr-2"></i>
-                  </a>
-                  <i className="fas fa-solid fa-trash pr-2"></i>
+
+                  <>
+                   <ChangeHistoria cita={cita}/>
+                   {dashboard ? <Link href={`/mascotas/${cita.mascota.idMascotas}`}>
+                        <i className="fas fa-solid fa-paw pr-2"></i>
+                      </Link> : ''}
+                   
+                                           <Link
+                          className="link-danger"
+                          href={`/perfil/${cita.mascota.dueno.dni}`}
+                        >
+                          <i className="fas fa-solid fa-id-badge pr-2"></i>
+                        </Link>
+
+
+                  {isAdmin(data?.user.rol)?
+                  <a type='button' className="fas text-danger fa-solid fa-trash pr-2" onClick={()=>deleteCitaPendienteTabla(cita.idCita)}></a>
+                  :""}
+                  </>
                 </td>
              
               </tr>

@@ -1,0 +1,11 @@
+.imginiciales {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background-color: #007bff; /* Color de fondo */
+    color: #fff; /* Color de texto */
+    font-size: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

@@ -14,8 +14,8 @@ function ChangeHistoria({ cita }: { cita: CitasPendientes }) {
 
   return (
     <>
-      <i  className="fas fa-solid fa-check pr-2" data-toggle="modal" onClick={handleShow}>
-      </i>
+      <a type='button' className="text-success fas fa-solid fa-check pr-2" data-toggle="modal" onClick={handleShow}>
+      </a>
       <ModalChangeHistoria show={show} setShow={setShow} cita={cita} />
     </>
   );

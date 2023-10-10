@@ -2,9 +2,13 @@
 import ChangeHistoria from '@/app/(root)/components/Add/ChangeHistoria'
 import { CitasPendientes } from '@/app/interfaces/interfaces'
 import { deleteCitaPendiente } from '@/app/services/deleteData'
+import { isAdmin } from '@/app/services/session'
+import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 function TablaCitasPendientesShort({citas}:{citas:CitasPendientes[]}) {
   const router = useRouter();
+  const {data} = useSession()
+
   const deleteCitaPendienteTabla = async (id:Number) =>{
     await deleteCitaPendiente(id);
     router.refresh()
@@ -17,7 +21,7 @@ function TablaCitasPendientesShort({citas}:{citas:CitasPendientes[]}) {
               <th>Fecha</th>
               <th>Consultorio</th>
               <th>Veterinario</th>
-              <th>Opciones</th>
+              {isAdmin(data?.user.rol)?<th>Options</th>:""}
             </tr>
           </thead>
 
@@ -29,10 +33,11 @@ function TablaCitasPendientesShort({citas}:{citas:CitasPendientes[]}) {
                 <td>
                   {cita.veterinario.nombre} {cita.veterinario.apellido}
                 </td>
+                {isAdmin(data?.user.rol)?
                 <td>
                   <ChangeHistoria cita={cita}/>
-                  <i className="fas fa-solid fa-trash pr-2" onClick={()=>deleteCitaPendienteTabla(cita.idCita)}></i>
-                </td>
+                  <a type='button' className="fas fa-solid text-danger fa-trash pr-2" onClick={()=>deleteCitaPendienteTabla(cita.idCita)}></a>
+                </td>:""}
               </tr>
             ))}
           </tbody>

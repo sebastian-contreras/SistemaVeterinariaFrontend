@@ -8,7 +8,8 @@ import FooterBar from "../components/FooterBar";
 import Providers from "../Providers";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
-
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -64,7 +65,7 @@ export default async function RootLayout({
       <a className="scroll-to-top rounded" href="#page-top">
         <i className="fas fa-angle-up"></i>
       </a>
-
+      <ToastContainer position="bottom-right"/>
       </Providers>
     </body>
     </html>

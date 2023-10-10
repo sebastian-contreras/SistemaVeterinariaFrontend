@@ -4,6 +4,8 @@ import { MascotasDtoPost } from "../../postDto/MascotaDtoPost";
 import { postNuevaMascota } from "@/app/services/postData";
 import { Button, Form, Modal } from "react-bootstrap";
 import { Persona } from "@/app/interfaces/interfaces";
+import { toast } from "react-toastify";
+import { SEXOMASCOTAS, TIPOMASCOTAS } from "@/app/enum/MASCOTAS";
 interface ModalProps {
   show: boolean;
   setShow: (open: boolean) => boolean | void;
@@ -27,8 +29,9 @@ function ModalAddMascota({ show, setShow, dueno }: ModalProps) {
         sexo: value.sexo.toString(),
         dueno: dueno.dni,
       };
-      await postNuevaMascota(newMascota);
+      let res = await postNuevaMascota(newMascota);
       router.refresh();
+      res.ok ? toast.success("Éxito!") : toast.error("Error");
     }
   }
 
@@ -50,32 +53,37 @@ function ModalAddMascota({ show, setShow, dueno }: ModalProps) {
               Fecha de Nacimiento
             </label>
             <div className="col-sm-8">
-            <Form.Control type="date" name="fechaDeNacimiento"/>
+              <Form.Control
+                type="date"
+                max={new Date().toISOString().slice(0, 10)}
+                name="fechaDeNacimiento"
+              />
             </div>
           </div>
           <div className="mb-3 row">
             <label className="col-sm-4 col-form-label">Tipo</label>
-            <select
-                className="form-select"
-                name="tipo"
-              >
-                <option value="Perro">Perro</option>
-                <option value="Gato">Gato</option>
-                <option value="Caballo">Caballo</option>
-                <option value="Pez">Pez</option>
-                <option value="Pajaro">Pajaro</option>
-              </select>
+            <select className="form-select" name="tipo">
+              {Object.values(TIPOMASCOTAS)
+              .filter((v)=>isNaN(Number(v)))
+              .map((mascota, index) => (
+                <option key={index} value={mascota}>
+                  {mascota}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="mb-3 row">
             <label className="col-sm-4 col-form-label">Sexo</label>
             <div className="col-sm-8">
-              <Form.Select
-                className="form-select"
-                name="sexo"
-              >
-                <option value="MACHO">Macho</option>
-                <option value="HEMBRA">Hembra</option>
+              <Form.Select className="form-select" name="sexo">
+              {Object.values(SEXOMASCOTAS)
+              .filter((v)=>isNaN(Number(v)))
+              .map((sexo, index) => (
+                <option key={index} value={sexo}>
+                  {sexo}
+                </option>
+              ))}
               </Form.Select>
             </div>
           </div>

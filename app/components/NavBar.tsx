@@ -62,19 +62,31 @@ function NavBar() {
             </div>
           </div>
         </form>
-        
+
         {/* <!-- Topbar Navbar --> */}
-        <NavDropdown className="mr-2 d-none d-lg-inline text-gray-600 small" title={`${session?.user.nombre} ${session?.user.apellido}`} id="basic-nav-dropdown">
-              <NavDropdown.Item>
-                <Link href={`./perfil/${session?.user.dni}`}>Perfil</Link>
-                </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item onClick={handleSignOut}>
-                Sign Out
-              </NavDropdown.Item>
-            </NavDropdown>
+        <NavDropdown
+          className="mr-2 d-none d-lg-inline text-gray-600 small"
+          title={
+<>
+              <span className="mr-2 d-none d-lg-inline text-gray-600 small">
+                {session?.user.nombre} {session?.user.apellido}
+              </span>
+              <img
+                className="img-profile rounded-circle"
+                src="img/undraw_profile.svg"
+              />
+    </>
+          }
+        >
+          <NavDropdown.Item
+            onClick={() => router.push(`/perfil/${session?.user.dni}`)}
+          >
+            Perfil
+          </NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item onClick={handleSignOut}>Sign Out</NavDropdown.Item>
+        </NavDropdown>
       </nav>
-      
     </>
   );
 }

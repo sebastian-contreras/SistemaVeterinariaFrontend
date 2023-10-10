@@ -1,11 +1,12 @@
 import { Mascotas } from "@/app/interfaces/interfaces";
 import { fetchMascotas } from "@/app/services/fetchData";
 import TablaMascotas from "./components/TablaMascotas";
-const getMascotas = async (): Promise<Mascotas[]> => {
-  return fetchMascotas();
+import Link from "next/link";
+const getMascotas = async (page:number=0): Promise<Mascotas[]> => {
+  return fetchMascotas(page);
 };
-async function Mascotas() {
-  const mascotasres = await getMascotas();
+async function Mascotas({ searchParams }: { searchParams: {page:number} }) {
+  const mascotasres = await getMascotas(searchParams.page);
 
   return (
     <>
@@ -32,6 +33,22 @@ async function Mascotas() {
           {/* <div className="card-body"> */}
           <div className="table-responsive">
             <TablaMascotas mascotas={mascotasres}/>
+                          {/* PAGINACION */}
+
+                          <nav aria-label="Page navigation example">
+                <ul className="pagination justify-content-center">
+                  <li className={`page-item ${!searchParams.page || searchParams.page==0 ? `disabled` : ``}`}>
+                    <Link href={`?page=${!searchParams.page ? ``: (Number(searchParams.page) - 1) }`} className="page-link">Anterior</Link>
+                  </li>
+                  <li className={`page-item ${mascotasres.length<10 ? `disabled` : ``}`}>
+                    <Link className="page-link" href={`?page=${!searchParams.page?`1`:(Number(searchParams.page) + 1)}`}>
+                      Siguiente
+                    </Link>
+                  </li>
+                </ul>
+              </nav>
+
+               {/* PAGINACION */}
           </div>
         </div>
       </div>

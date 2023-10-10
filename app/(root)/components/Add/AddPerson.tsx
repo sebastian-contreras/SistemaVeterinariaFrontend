@@ -6,6 +6,7 @@ import { Button, Modal } from "react-bootstrap";
 import { PersonaDtoPost } from "../postDto/PersonaDtoPost";
 import { postNuevaPersona } from "@/app/services/postData";
 import ModalAddPerson from "./components/ModalAddPerson";
+import { toast } from "react-toastify";
 
 function AddPerson({tipo}:{tipo:boolean}) {
     const [show, setShow] = useState<boolean>(false);

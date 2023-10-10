@@ -3,6 +3,8 @@ import { Button, Modal } from "react-bootstrap";
 import { PersonaDtoPost } from "../../postDto/PersonaDtoPost";
 import { postNuevaPersona } from "@/app/services/postData";
 import { useRouter } from "next/navigation";
+import { ROL } from "@/app/enum/ROL";
+import { toast } from "react-toastify";
 interface ModalProps {
   show: boolean;
   setShow: (open: boolean) => boolean | void;
@@ -18,7 +20,7 @@ export default function ModalAddPerson({ show, setShow, tipo }: ModalProps) {
           setShow(false);
           const formData = new FormData(formRef.current);
           const value = Object.fromEntries(formData);
-          let perfil = "USUARIO";
+          let perfil = ROL.USUARIO;
           const newPersona: PersonaDtoPost = {
             dni: value.dni.toString(),
             nombre: value.nombre.toString(),
@@ -30,11 +32,19 @@ export default function ModalAddPerson({ show, setShow, tipo }: ModalProps) {
             perfilRol: perfil,
           };
           if (!tipo) {
-            newPersona.perfilRol = "VETERINARIO";
+            newPersona.perfilRol = ROL.VETERINARIO;
             newPersona.matricula = value.matricula.toString();
           }
-          await postNuevaPersona(newPersona);
-          router.refresh();
+            let res = await postNuevaPersona(newPersona);
+            router.push(`/perfil/${newPersona.dni}`)
+            if(res.ok){
+            router.push(`/perfil/${newPersona.dni}`)
+              toast.success("Éxito!")
+            }else{
+              
+              toast.error("Error");
+            }
+          
     }
 
   }
