@@ -50,7 +50,7 @@ function GraficoVet({datos}:{datos:GananciaVetArray}) {
   }; 
   return (
     <div className="row">
-      <div className="col-6">
+      <div className="col-xl-6">
         <Chart
           chartType="BarChart"
           width="100%"
@@ -59,7 +59,7 @@ function GraficoVet({datos}:{datos:GananciaVetArray}) {
           options={options}
         />
       </div>
-      <div className="col-6">
+      <div className="col-xl-6">
         <Chart
           chartType="BarChart"
           width="100%"

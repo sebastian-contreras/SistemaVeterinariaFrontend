@@ -33,7 +33,7 @@ function GraficoTorta({ estadistica }: { estadistica: estadistica }) {
   return (
     <>
       <div className="row">
-        <div className="col-4">
+        <div className="col-xl-4 col-md-6 ">
           <Chart
             chartType="PieChart"
             data={dataSexo}
@@ -42,7 +42,7 @@ function GraficoTorta({ estadistica }: { estadistica: estadistica }) {
             height={"400px"}
           />
         </div>
-        <div className="col-4">
+        <div className="col-xl-4 col-md-6 ">
           <Chart
             chartType="PieChart"
             data={dataTipo}
@@ -51,7 +51,7 @@ function GraficoTorta({ estadistica }: { estadistica: estadistica }) {
             height={"400px"}
           />
         </div>
-        <div className="col-4">
+        <div className="col-xl-4 col-md-6 ">
           <Chart
             chartType="PieChart"
             data={dataCitaTipo}
