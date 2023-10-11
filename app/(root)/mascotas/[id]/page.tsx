@@ -17,7 +17,7 @@ import SeccionHistoria from "./components/SeccionHistoria";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { isAdmin } from "@/app/services/session";
-
+import picAnimal from "@/public/img/one.jpg"
 const getMascota = async (id: Number): Promise<Mascotas> => {
   return fetchMascota(id);
 };
@@ -38,6 +38,8 @@ async function perfilMascota({ params }: { params: { id: Number } }) {
   const citas = await getCitas(params.id);
   const historias = await getHistoria(params.id);
   const veterinarios = await getVeterinarios();
+  let res = await fetch(`${mascota.urlFoto}`)
+  if(!res.ok) mascota.urlFoto = picAnimal.src
   return (
     <>
       <CabeceraMascota mascota={mascota} />

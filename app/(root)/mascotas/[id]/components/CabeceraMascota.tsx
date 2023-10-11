@@ -9,14 +9,10 @@ function CabeceraMascota({mascota}:{mascota:Mascotas}) {
         </div>
         <div className="card-body">
           <div className="row">
-            <div className="col-3 pl-5">
-              <img
-                className="rounded-circle"
-                src="https://source.unsplash.com/Mv9hjnEUHR4/180x180"
-                alt="..."
-              />
+            <div className="col-xl-3 col-md-12 pb-5 col-3 pl-5 text-center">
+              <img className="rounded-circle" width={180} height={180} alt="..." src={`${mascota.urlFoto}`}/>
             </div>
-            <div className="col-9">
+            <div className="col-xl-9 col-md-12">
               <div className="input-group mb-3 col-9">
                 <span
                   className="input-group-text"

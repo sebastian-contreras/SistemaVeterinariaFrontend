@@ -2,7 +2,7 @@ import AddCredencial from "@/app/(root)/components/Add/AddCredencial";
 import { ROL } from "@/app/enum/ROL";
 import { Persona } from "@/app/interfaces/interfaces";
 import Image from "next/image";
-import "./Cabecera.css"
+import "./Cabecera.css";
 function Cabecera({
   perfil,
   hasCredential,
@@ -19,12 +19,15 @@ function Cabecera({
       </div>
       <div className="card-body">
         <div className="row">
-          <div className="col-md-3 col-sm-12   pl-5">
-            <div className="imginiciales">
-              <span className="bold">{perfil.nombre[0]}{perfil.apellido[0]}</span>
+          <div className="col-xl-3 col-md-12 pb-5 text-center">
+            <div className="imginiciales mx-auto">
+              <span className="bold">
+                {perfil.nombre[0]}
+                {perfil.apellido[0]}
+              </span>
             </div>
           </div>
-          <div className="col-md-9 col-sm-12 ">
+          <div className="col-xl-9 col-md-12">
             <div className="input-group mb-3 col-9">
               <span className="input-group-text" id="inputGroup-sizing-default">
                 Nombre
@@ -111,7 +114,11 @@ function Cabecera({
               ""
             )}
             <div className="ml-3">
-              {!hasCredential && perfil.perfilRol==ROL.VETERINARIO ? <AddCredencial dni={perfil.dni.toString()} /> : ""}
+              {!hasCredential && perfil.perfilRol == ROL.VETERINARIO ? (
+                <AddCredencial dni={perfil.dni.toString()} />
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>

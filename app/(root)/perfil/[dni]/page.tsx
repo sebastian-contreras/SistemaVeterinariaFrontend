@@ -38,9 +38,11 @@ async function perfil({ params }: { params: { dni: String } }) {
   const mascotasres = await getMascotas(parametro);
   const citas = await getCitas(parametro);
   const tienenCred = await getHasCredential(parametro)
+  
   return (
     // <div className="col-lg-12">
     <>
+    <div>
       {/* CABECERA PERFIL */}
       <Cabecera perfil={perfil} hasCredential={tienenCred}/>
 
@@ -75,6 +77,7 @@ async function perfil({ params }: { params: { dni: String } }) {
           </div>
         </div>
         <ShortTableMascotas mascotas={mascotasres} />
+      </div>
       </div>
     </>
   );

@@ -87,7 +87,6 @@ export const fetchAllClientes = async (page?:number): Promise<Persona[]> => {
 export const fetchMascotas = async (page?:number): Promise<Mascotas[]> => {
   const token = await getTokenSession();
   const headers = { Authorization: `Bearer ${token}` };
-  console.log(`${apiUrl}/api/mascotas${page != undefined ? `?page=${page}` : ''}`)
   const data = await fetch(`${apiUrl}/api/mascotas${page != undefined ? `?page=${page}` : ''}`, {
     cache: "no-cache",
     headers,
