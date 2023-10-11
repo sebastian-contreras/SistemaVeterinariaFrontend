@@ -33,11 +33,12 @@ function TablaCitasPendientesShort({citas}:{citas:CitasPendientes[]}) {
                 <td>
                   {cita.veterinario.nombre} {cita.veterinario.apellido}
                 </td>
-                {isAdmin(data?.user.rol)?
                 <td>
-                  <ChangeHistoria cita={cita}/>
+                  {data?.user.dni==cita.veterinario.dni || isAdmin(data?.user.rol) ? <ChangeHistoria cita={cita}/> : ''}
+                {isAdmin(data?.user.rol)?
                   <a type='button' className="fas fa-solid text-danger fa-trash pr-2" onClick={()=>deleteCitaPendienteTabla(cita.idCita)}></a>
-                </td>:""}
+                  :""}
+                  </td>
               </tr>
             ))}
           </tbody>

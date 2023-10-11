@@ -55,7 +55,7 @@ function ShortTableCitasPendientes({
 
             <td>
               <>
-                <ChangeHistoria cita={cita} />
+                {data?.user.dni==cita.veterinario.dni || isAdmin(data?.user.rol) ? <ChangeHistoria cita={cita} /> : ''}
                 {dashboard ? (
                   <Link href={`/mascotas/${cita.mascota.idMascotas}`}>
                     <i className="fas fa-solid fa-paw pr-2"></i>
