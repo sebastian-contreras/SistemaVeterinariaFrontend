@@ -21,7 +21,7 @@ function TablaCitasPendientesShort({citas}:{citas:CitasPendientes[]}) {
               <th>Fecha</th>
               <th>Consultorio</th>
               <th>Veterinario</th>
-              {isAdmin(data?.user.rol)?<th>Options</th>:""}
+              <th>Options</th>
             </tr>
           </thead>
 
