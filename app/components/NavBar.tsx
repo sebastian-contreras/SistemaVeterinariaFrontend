@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import { NavDropdown } from "react-bootstrap";
 import miniatura from '@/public/img/undraw_profile.svg'
+import Image from "next/image";
 function NavBar() {
   const [searchClient, setSearchClient] = useState<string>("");
   const router = useRouter();
@@ -72,8 +73,9 @@ function NavBar() {
               <span className="mr-2 d-none d-lg-inline text-gray-600 small">
                 {session?.user.nombre} {session?.user.apellido}
               </span>
-              <img
-                className="img-profile rounded-circle"
+              <Image
+              alt="miniatura" 
+              className="img-profile rounded-circle"
                 src={miniatura}
               />
     </>
