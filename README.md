@@ -1,5 +1,3 @@
-
-
 <div align="center">
   <a href="[https://github.com/othneildrew/Best-README-Template](https://github.com/sebastian-contreras/)">
     <img src="https://w7.pngwing.com/pngs/589/438/png-transparent-cat-paw-kitten-dog-cat-animals-pet-paw.png" alt="Logo" width="80" height="80">
@@ -75,6 +73,11 @@ pnpm dev
 <!-- GETTING STARTED -->
 ## Imagenes
 
+![Dashboard Administrador](/Imagenes/dashAdmin.png)
+![Dashboard Veterinario](/Imagenes/dashbvet.png)
+![Perfil Cliente](/Imagenes/perfilCliente.png)
+![Perfil Mascota](/Imagenes/perfilmascota.png)
+![Tabla clientes](/Imagenes/clientes.png)
 
 <!-- CONTACT -->
 ## Contacto
